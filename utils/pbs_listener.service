@@ -1,0 +1,14 @@
+[Unit]
+Description=PBS event handler
+After=pbs.service
+BindsTo=pbs.service
+PartOf=pbs.service
+
+[Service]
+WorkingDirectory=/opt/pbs_listener/
+ExecStart=/opt/pbs_listener/venv/bin/python pbs_listener.py
+Restart=on-failure
+RestartSec=20
+
+[Install]
+WantedBy=multi-user.target

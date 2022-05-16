@@ -1,0 +1,33 @@
+Hi:
+    
+    您的HPC计算任务{{ job_name }}, ID为{{ job_id }}已经结束.
+    计算使用的软件是: {{ app }}
+    计算的文件为: {{ job_file }}
+
+    总共耗时: {{ total_hours }} 小时。其中：
+        排队的时间是: {{ wait_hours }} 小时
+        运行的时间为: {{ run_hours }} 小时
+
+    消耗的资源:
+        CPU:  {{ cores }} 核心
+        内存:  {{ memory }} GB
+
+    该邮件是系统自动生成，请勿回复
+
+
+    Your HPC job {{ job_name }} which job id is {{ job_id }} has finished.
+    The application is {{ app }}
+    And the job file is {{ job_file }}
+    The total time is {{ total_hours }} hour, includes:
+        queue time: {{ wait_hours }} hours
+        running time: {{ run_hours }} hours
+
+    Resources of your job:
+        CPU: {{ cores }}
+        memory: {{ memory }} GB
+
+    This mail is generated automatically, please do not reply
+
+
+BestRegards
+thuhak.zhou@nio.com

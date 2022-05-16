@@ -1,0 +1,31 @@
+database:
+  host: 10.10.200.37
+  port: 15007
+  dbname: pbs_datastore
+  user: postgres
+  password: test
+
+pbs:
+  cluster: test
+
+user_db:
+  uri: bolt://ipeople-db.nioint.com:7687
+  db_user: user
+  db_pass: pass
+
+smtp:
+  smtp_host: smtpint.nioint.com
+  smtp_user: hpcadmin@nioint.com
+  smtp_pass: pass
+
+metrics:
+  url: https://10.112.20.209/zabbix/
+  user: user
+  password: pass
+
+datastore:
+  index: hpcjobs
+  hosts: http://10.112.20.153:9000
+  basic_auth:
+    - user
+    - pass

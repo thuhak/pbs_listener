@@ -1,0 +1,8 @@
+psycopg2-binary==2.9.3
+elasticsearch==8.2.0
+cachetools==5.1.0
+pyzabbix==1.0.0
+requests==2.27.1
+py2neo==2021.2.3
+Jinja2==3.0.3
+myconf==1.1.2

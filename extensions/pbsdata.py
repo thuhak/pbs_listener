@@ -73,7 +73,7 @@ class JobData(UserDict):
         'job_name': KeyType('Job_Name', str),
         'project': KeyType('project', str),
         'user': KeyType('euser', str),
-        'email': KeyType('Mail_users', str),
+        'email': KeyType('Mail_Users', str),
         'queue': KeyType('queue', str),
         'priority': KeyType('Priority', int),
         'run_count': KeyType('run_count', int),

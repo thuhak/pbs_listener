@@ -31,22 +31,24 @@ class Mail:
         return True if status == 250 else False
 
     def __call__(self, jobdata: JobData):
-        try:
-            email = jobdata['email']
-            job_ret = 'completed' if jobdata['is_job_success'] else 'failed'
-            msg = MIMEMultipart()
-            msg['From'] = Header(self.smtp_user, 'ascii')
-            msg['To'] = Header(email, 'ascii')
-            msg['Subject'] = Header(f'Your HPC job is {job_ret}')
-            email_data = jobdata.export(self.export_keys)
-            logger.debug(f'email data: {email_data}')
-            content = self.template.render(**email_data)
-            msg.attach(MIMEText(content, 'plain', 'utf-8'))
+        email = jobdata['email']
+        job_ret = 'completed' if jobdata['is_job_success'] else 'failed'
+        msg = MIMEMultipart()
+        msg['From'] = Header(self.smtp_user, 'ascii')
+        msg['To'] = Header(email, 'ascii')
+        msg['Subject'] = Header(f'Your HPC job is {job_ret}')
+        email_data = jobdata.export(self.export_keys)
+        logger.debug(f'email data: {email_data}')
+        content = self.template.render(**email_data)
+        msg.attach(MIMEText(content, 'plain', 'utf-8'))
+        with self.lock:
             logger.info(f'sending mail to {email}')
-            with self.lock:
+            try:
                 if not self._is_connected():
                     self.server.connect(self.smtp_host, self.smtp_port)
                     self.server.login(self.smtp_user, self.smtp_pass)
                 self.server.sendmail(self.smtp_user, [email], msg.as_string())
-        except Exception as e:
-            logger.error(f'send mail failed, reason {str(e)}')
+            except Exception as e:
+                logger.error(f'send mail failed, reason {str(e)}')
+            finally:
+                self.server.close()

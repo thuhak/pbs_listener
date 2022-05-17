@@ -27,11 +27,10 @@ class UserInfo:
         logger.info(f'getting date of {username}')
         try:
             deps = {f't{i["tier"]}': i["dep"] for i in self.graph.run(dep_cypher).data()}
+            result = {'departments': deps}
             email = self.graph.run(email_cypher).data()[0]['email']
-            result = {
-                'email': email,
-                'departments': deps
-            }
+            if email:
+                result['email'] = email
         except Exception as e:
             logger.error(f'fail to get data from ipeople db, {str(e)}')
         return result

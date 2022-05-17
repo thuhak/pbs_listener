@@ -1,5 +1,5 @@
 database:
-  host: 10.10.200.37
+  host: pbs_test
   port: 15007
   dbname: pbs_datastore
   user: postgres
@@ -9,23 +9,23 @@ pbs:
   cluster: test
 
 user_db:
-  uri: bolt://ipeople-db.nioint.com:7687
+  uri: neo4j_database
   db_user: user
   db_pass: pass
 
 smtp:
-  smtp_host: smtpint.nioint.com
-  smtp_user: hpcadmin@nioint.com
+  smtp_host: smtp_server
+  smtp_user: smtp_user
   smtp_pass: pass
 
 metrics:
-  url: https://10.112.20.209/zabbix/
+  url: zabbix_server
   user: user
   password: pass
 
 datastore:
   index: hpcjobs
-  hosts: http://10.112.20.153:9000
+  hosts: elasticsearch_server
   basic_auth:
     - user
     - pass

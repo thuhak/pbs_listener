@@ -98,6 +98,7 @@ class JobData(UserDict):
         super(JobData, self).__init__()
         job_id = int(job_id.split('.', maxsplit=1)[0])
         data = {'job_id': job_id}
+        logger.info(f'handle event for job: {job_id}')
         # parse raw_data
         for k, v in self.export_table.items():
             key = v.key if '.' in v.key else f'{v.key}.'
@@ -117,6 +118,7 @@ class JobData(UserDict):
         data['run_hours'] = time_range(data['start_time'], data['finish_time'])
         data['wait_hours'] = time_range(data['eligible_time'], data['start_time'])
         data['total_hours'] = time_range(data['create_time'], data['finish_time'])
+        data['wait_rate'] = round(data['wait_hours'] / data['total_hours'], 2)
         if not data.get('app'):
             try:
                 data['app'] = basename(data['args'][-1])

@@ -163,10 +163,8 @@ class PBSListener:
         """
         :param dsn: pbs postgres dsn
         :param cluster: pbs cluster name
-        :param datastore: elasticsearch
-        :param user_db: neo4j
-        :param mail_sender: smtp
         :param workers: number of threads
+        :param **modules: all extensions
         """
         self.dsn = dsn
         self.cluster = cluster

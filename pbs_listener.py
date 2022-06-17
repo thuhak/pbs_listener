@@ -255,6 +255,6 @@ if __name__ == '__main__':
                 logger.warning(f'skip module {ext}')
         except:
             logger.error(f'can not load {ext}')
-    j = PBSListener(db_args, cluster, workers=0, **modules)
+    j = PBSListener(db_args, cluster, **modules)
     with j:
         j.run()

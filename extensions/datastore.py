@@ -4,8 +4,6 @@ import logging
 from elasticsearch import Elasticsearch
 from dateutil.relativedelta import relativedelta
 
-from . import JobData
-
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +17,7 @@ class DataStore:
         self.es = Elasticsearch(**kwargs)
         self.index = index
 
-    def __call__(self, data: JobData):
+    def __call__(self, data):
         t = datetime.utcnow()
         index = f'{self.index}-{t.year}'
         for k, v in data.items():

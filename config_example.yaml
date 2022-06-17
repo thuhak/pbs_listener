@@ -8,22 +8,23 @@ database:
 pbs:
   cluster: test
 
-user_db:
+# optional configuration
+UserInfo:
   uri: neo4j_database
   db_user: user
   db_pass: pass
 
-smtp:
+Mail:
   smtp_host: smtp_server
   smtp_user: smtp_user
   smtp_pass: pass
 
-metrics:
+Metrics:
   url: zabbix_server
   user: user
   password: pass
 
-datastore:
+DataStore:
   index: hpcjobs
   hosts: elasticsearch_server
   basic_auth:

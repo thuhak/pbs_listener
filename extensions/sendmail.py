@@ -6,7 +6,6 @@ import logging
 from threading import Lock
 
 from jinja2 import Environment, PackageLoader
-from . import JobData
 
 logger = logging.getLogger(__name__)
 env = Environment(loader=PackageLoader('extensions', 'mail_templates'))
@@ -30,8 +29,11 @@ class Mail:
             status = -1
         return True if status == 250 else False
 
-    def __call__(self, jobdata: JobData):
-        email = jobdata['email']
+    def __call__(self, jobdata):
+        email = jobdata.get('email')
+        if not email:
+            logger.error('no email info')
+            return
         job_ret = 'completed' if jobdata['is_job_success'] else 'failed'
         msg = MIMEMultipart()
         msg['From'] = Header(self.smtp_user, 'ascii')

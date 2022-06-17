@@ -13,7 +13,6 @@ from cachetools import TTLCache, cached
 from pyzabbix import ZabbixAPI
 import requests
 
-from . import JobData
 
 logger = logging.getLogger(__name__)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -76,7 +75,7 @@ class Metrics:
                                      output=['value'])
         return [method(i['value']) for i in data]
 
-    def __call__(self, jobdata: JobData) -> dict:
+    def __call__(self, jobdata) -> dict:
         result = {}
         time_from = int(jobdata['start_time'].timestamp())
         time_till = int(jobdata['finish_time'].timestamp())

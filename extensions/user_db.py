@@ -24,7 +24,7 @@ class UserInfo:
         MATCH (n:People {{workerUserId: '{username}'}})
         RETURN n.email AS email
         '''
-        logger.info(f'getting date of {username}')
+        logger.debug(f'getting data of {username}')
         try:
             deps = {f't{i["tier"]}': i["dep"] for i in self.graph.run(dep_cypher).data()}
             result = {'departments': deps}
